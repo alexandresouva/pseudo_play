@@ -6,7 +6,7 @@ async function listVideos() {
   return data;
 }
 
-async function createVideo(title, views, videoUrl, imageSrc) {
+async function createVideo(title, videoUrl, imageSrc, views) {
   const connection = await fetch('http://localhost:5000/videos', {
     method: 'POST',
     headers: {
