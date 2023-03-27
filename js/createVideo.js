@@ -11,11 +11,11 @@ async function createVideo(event) {
   event.preventDefault();
 
   const title = document.querySelector('[data-title]').value;
+  const views = Math.floor(Math.random() * 10 + 1).toString();
   const url = convertUrlToEmbed(document.querySelector('[data-url]').value);
   const img = document.querySelector('[data-img]').value;
-  const views = Math.floor(Math.random() * 10 + 1).toString();
 
-  await connectApi.createVideo(title, url, img, views);
+  await connectApi.createVideo(title, views, url, img);
 
   window.location.href = '../pages/envio-concluido.html';
 }

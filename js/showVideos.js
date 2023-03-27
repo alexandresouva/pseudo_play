@@ -3,7 +3,7 @@ import { connectApi } from './connectApi.js';
 
 const $list = document.querySelector('[data-list]');
 
-function createCard(title, views, videoSrc, imgSrc) {
+export default function createCard(title, views, videoSrc, imgSrc) {
   const card = document.createElement('li');
   card.classList.add('videos__item');
   card.innerHTML = `<iframe width="100%" height="72%" src="${videoSrc}"
@@ -28,4 +28,3 @@ async function listVideo() {
   });
 }
 listVideo();
-// console.log(connectApi);
