@@ -7,21 +7,25 @@ async function listVideos() {
 }
 
 async function createVideo(title, views, videoUrl, imageSrc) {
-  const connection = await fetch('http://localhost:5000/videos', {
-    method: 'POST',
-    headers: {
-      'Content-type': 'application/json',
-    },
-    body: JSON.stringify({
-      id: '',
-      titulo: title,
-      visualizacoes: `${views} mil visualizações`,
-      url: videoUrl,
-      imagem: imageSrc,
-    }),
-  });
-  const data = await connection.json();
-  return data;
+  try {
+    const connection = await fetch('http://localhost:500d0/videos', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: '',
+        titulo: title,
+        visualizacoes: `${views} mil visualizações`,
+        url: videoUrl,
+        imagem: imageSrc,
+      }),
+    });
+    const data = await connection.json();
+    return data;
+  } catch (error) {
+    throw new Error('Não foi possível enviar o vídeo');
+  }
 }
 
 async function searchVideo(keyWords) {

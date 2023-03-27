@@ -15,9 +15,13 @@ async function createVideo(event) {
   const url = convertUrlToEmbed(document.querySelector('[data-url]').value);
   const img = document.querySelector('[data-img]').value;
 
-  await connectApi.createVideo(title, views, url, img);
+  try {
+    await connectApi.createVideo(title, views, url, img);
 
-  window.location.href = '../pages/envio-concluido.html';
+    window.location.href = '../pages/envio-concluido.html';
+  } catch (error) {
+    alert(error);
+  }
 }
 
 $form.addEventListener('submit', (event) => createVideo(event));

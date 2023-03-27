@@ -17,13 +17,16 @@ async function searchVideo(e) {
   const keyWords = $searchBar.value;
   const videosFound = await connectApi.searchVideo(keyWords);
   clearVideoList();
-  // console.log(videosFound);
 
   videosFound.forEach((video) => {
     $list.appendChild(
       createCard(video.titulo, video.visualizacoes, video.url, video.imagem)
     );
   });
+
+  if (videosFound.length === 0) {
+    $list.innerHTML = `<h2 class="mensagem__titulo">Nenhum vídeo foi encontrado.<h2>`;
+  }
 }
 
 $searchBtn.addEventListener('click', (e) => searchVideo(e));

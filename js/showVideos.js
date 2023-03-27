@@ -20,11 +20,16 @@ export default function createCard(title, views, videoSrc, imgSrc) {
 }
 
 async function listVideo() {
-  const list = await connectApi.listVideos();
-  list.forEach((item) => {
-    $list.appendChild(
-      createCard(item.titulo, item.visualizacoes, item.url, item.imagem)
-    );
-  });
+  try {
+    const list = await connectApi.listVideos();
+    list.forEach((item) => {
+      $list.appendChild(
+        createCard(item.titulo, item.visualizacoes, item.url, item.imagem)
+      );
+    });
+  } catch (error) {
+    $list.innerHTML =
+      '<h2 class="mensagem__titulo">Não foi possível carregar a lista de vídeos, consulte o administrador.</h2>';
+  }
 }
 listVideo();
